@@ -9,8 +9,8 @@
 <body>
     <div class="container">
         <h1>Word to PDF and PDF to Word Converter</h1>
-        <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
-            <div class="option-buttons">
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="conversion-options">
                 <label>
                     <input type="radio" name="conversion_type" value="word_to_pdf" required>
                     Word to PDF
@@ -21,7 +21,7 @@
                 </label>
             </div>
             <input type="file" name="file" required>
-            <button type="submit">Convert</button>
+            <button type="submit">Upload and Convert</button>
         </form>
     </div>
 </body>
