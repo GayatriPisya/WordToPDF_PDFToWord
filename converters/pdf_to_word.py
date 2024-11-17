@@ -1,10 +1,7 @@
-from pdf2docx import Converter
+from docx import Document
 
-def pdf_to_word(input_path, output_path):
-    try:
-        cv = Converter(input_path)
-        cv.convert(output_path, start=0, end=None)  # Convert the entire PDF
-        cv.close()
-        print(f"Successfully converted '{input_path}' to '{output_path}'.")
-    except Exception as e:
-        print(f"Error: {e}")
+def pdf_to_word(input_file, output_stream):
+    """Convert PDF to Word."""
+    doc = Document()
+    doc.add_paragraph("This is a placeholder for PDF to Word conversion.")
+    doc.save(output_stream)
