@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>File Converter</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Word ↔ PDF Converter</h1>
+        <form action="/convert" method="POST" enctype="multipart/form-data">
+            <label for="file">Choose a file:</label>
+            <input type="file" id="file" name="file" required>
+            <label for="conversion_type">Conversion Type:</label>
+            <select id="conversion_type" name="conversion_type" required>
+                <option value="word-to-pdf">Word to PDF</option>
+                <option value="pdf-to-word">PDF to Word</option>
+            </select>
+            <button type="submit">Convert</button>
+        </form>
+    </div>
+</body>
+</html>
