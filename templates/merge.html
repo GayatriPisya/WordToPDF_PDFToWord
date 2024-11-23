@@ -9,43 +9,19 @@
             <div class="card shadow-lg border-0" style="background: linear-gradient(to right, #4e79a7, #8c8ec6);">
                 <div class="card-body text-center">
                     <h5 class="card-title" style="color: white;"><i class="fas fa-layer-group"></i> Merge PDFs</h5>
-                    <form action="/merge" method="POST" enctype="multipart/form-data">
-                        <!-- File Inputs -->
+                    <form action="/arrange" method="POST" enctype="multipart/form-data" id="upload-form">
+                        <!-- File Input -->
                         <div class="form-group mb-3">
-                            <label for="file1" class="text-white">Upload PDF File 1</label>
-                            <input type="file" name="file1" class="form-control mb-3" required>
+                            <label for="files" class="text-white">Upload PDF Files</label>
+                            <input type="file" name="files" id="files" class="form-control" multiple required>
+                            <small class="text-white">You can select multiple PDF files at once.</small>
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="file2" class="text-white">Upload PDF File 2</label>
-                            <input type="file" name="file2" class="form-control mb-3" required>
-                        </div>
-                        <div id="additional-files" class="form-group">
-                            <!-- Placeholder for additional file inputs -->
-                        </div>
-                        <!-- Add More Files Button -->
-                        <button type="button" class="btn btn-outline-light w-100 mb-3" id="add-file">
-                            <i class="fas fa-plus"></i> Add More Files
-                        </button>
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-light w-100">Merge PDFs</button>
+                        <button type="submit" class="btn btn-light w-100">Proceed to Arrange</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    // JavaScript for adding additional file inputs
-    document.getElementById('add-file').addEventListener('click', function() {
-        const additionalFiles = document.getElementById('additional-files');
-        const newFileInput = document.createElement('div');
-        newFileInput.classList.add('form-group', 'mb-3');
-        newFileInput.innerHTML = `
-            <label for="additional_file" class="text-white">Upload Additional PDF File</label>
-            <input type="file" name="additional_files[]" class="form-control">
-        `;
-        additionalFiles.appendChild(newFileInput);
-    });
-</script>
 {% endblock %}
