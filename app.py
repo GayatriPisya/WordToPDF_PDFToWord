@@ -110,5 +110,6 @@ def convert_pdf_to_word(input_path, output_path):
     except Exception as e:
         print(f"Error converting PDF to Word: {e}")
 
+
 if __name__ == '__main__':
     app.run(debug=True)
