@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Arrange Files Section -->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0" style="background: linear-gradient(to right, #11998e, #38ef7d);">
+                <div class="card-body text-center">
+                    <h5 class="card-title" style="color: white;"><i class="fas fa-sort"></i> Arrange PDF Files</h5>
+                    <form action="/merge" method="POST" id="arrange-form">
+                        <ul id="file-list" class="list-group mb-3">
+                            <!-- Dynamically populated list of files -->
+                            {% for file in files %}
+                            <li class="list-group-item">
+                                <span>{{ file.filename }}</span>
+                                <input type="hidden" name="file_order[]" value="{{ file.filename }}">
+                                <button type="button" class="btn btn-sm btn-secondary float-right move-up">↑</button>
+                                <button type="button" class="btn btn-sm btn-secondary float-right move-down">↓</button>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-light w-100">Merge PDFs</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript for moving list items up and down
+    document.querySelectorAll('.move-up').forEach(button => {
+        button.addEventListener('click', () => {
+            const item = button.closest('li');
+            if (item.previousElementSibling) {
+                item.parentNode.insertBefore(item, item.previousElementSibling);
+            }
+        });
+    });
+
+    document.querySelectorAll('.move-down').forEach(button => {
+        button.addEventListener('click', () => {
+            const item = button.closest('li');
+            if (item.nextElementSibling) {
+                item.parentNode.insertBefore(item.nextElementSibling, item);
+            }
+        });
+    });
+</script>
+{% endblock %}
