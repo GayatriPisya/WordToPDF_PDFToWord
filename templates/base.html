@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Document Converter{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="d-flex flex-column min-vh-100">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(to right, #c6133c, #09226e);">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/"><i class="fa-solid fa-file-invoice"></i> Converter</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Word to PDF -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/word-to-pdf" title="Convert Word to PDF">
+                                <i class="fas fa-file-word"></i> Word to PDF
+                            </a>
+                        </li>
+                        <!-- PDF to Word -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pdf-to-word" title="Convert PDF to Word">
+                                <i class="fas fa-file-pdf"></i> PDF to Word
+                            </a>
+                        </li>
+                        <!-- File Compression -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/compress" title="Compress PDF Files">
+                                <i class="fas fa-compress"></i> File Compression
+                            </a>
+                        </li>
+                        <!-- Merge PDFs -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/merge" title="Combine Multiple PDFs">
+                                <i class="fas fa-layer-group"></i> Merge PDFs
+                            </a>
+                        </li>
+                        <!-- Image to PDF -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/image-to-pdf" title="Convert Images to PDF">
+                                <i class="fas fa-image"></i> Image to PDF
+                            </a>
+                        </li>
+                        <!-- Split PDFs -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/split-pdfs" title="Split Large PDF Files">
+                                <i class="fas fa-columns"></i> Split PDFs
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content Block -->
+        <main class="container my-5 flex-grow-1">
+            {% block content %}
+            <h2>Welcome to the Document Converter</h2>
+            <p>Select a tool from the navigation bar to get started.</p>
+            {% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-white text-center py-3">
+            <p>&copy; 2024 Document Converter. All rights reserved.</p>
+            <p>Created by <a href="https://www.linkedin.com/in/gayatri-pisya/" target="_blank" style="color: white;">Gayatri Pisya</a></p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

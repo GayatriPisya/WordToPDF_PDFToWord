@@ -9,10 +9,40 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)  # Ensure uploads folder exists
 
-# Route for the homepage
+
 @app.route('/')
-def index():
-    return render_template('index.html')
+def home():
+    return render_template('base.html') 
+
+# Route for Word to PDF
+@app.route('/word-to-pdf')
+def word_to_pdf():
+    return render_template('word_to_pdf.html')
+
+# Route for PDF to Word
+@app.route('/pdf-to-word')
+def pdf_to_word():
+    return render_template('pdf_to_word.html')
+
+# Route for File Compression
+@app.route('/compress')
+def compress():
+    return render_template('compress.html')
+
+# Route for Merge PDFs
+@app.route('/merge')
+def merge():
+    return render_template('merge.html')
+
+# Route for Image to PDF
+@app.route('/image-to-pdf')
+def image_to_pdf():
+    return render_template('image_to_pdf.html')
+
+# Route for Split PDFs
+@app.route('/split-pdfs')
+def split_pdfs():
+    return render_template('split_pdfs.html')
 
 # Route to handle file upload and conversion
 @app.route('/convert', methods=['POST'])
