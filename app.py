@@ -142,6 +142,22 @@ def compress_image():
 
         # Return the compressed image to the user for download
         return send_file(compressed_file_path, as_attachment=True)
+@app.route('/merge', methods=['POST'])
+def merge_pdfs():
+    from PyPDF2 import PdfMerger
+
+    file_order = request.form.getlist('file_order[]')
+    merger = PdfMerger()
+
+    for filename in file_order:
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        merger.append(file_path)
+
+    output_path = os.path.join(app.config['UPLOAD_FOLDER'], 'merged.pdf')
+    merger.write(output_path)
+    merger.close()
+
+    return send_file(output_path, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
