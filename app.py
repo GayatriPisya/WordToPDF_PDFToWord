@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, send_file
 from werkzeug.utils import secure_filename
+from PIL import Image
 import os
 import subprocess
+from io import BytesIO
 
 app = Flask(__name__)
 
@@ -110,6 +112,36 @@ def convert_pdf_to_word(input_path, output_path):
     except Exception as e:
         print(f"Error converting PDF to Word: {e}")
 
+@app.route('/compress-image', methods=['POST'])
+def compress_image():
+    file = request.files['file']
+    compression_level = int(request.form['compression_level'])
+
+    if file:
+        # Save the uploaded file
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
+
+        # Open the image file with Pillow
+        img = Image.open(file_path)
+
+        # Adjust the quality based on the selected compression level
+        if compression_level == 25:
+            quality = 25
+        elif compression_level == 50:
+            quality = 50
+        elif compression_level == 75:
+            quality = 75
+        else:
+            quality = 100  # No compression
+
+        # Compress the image and save it to a new location
+        compressed_file_path = os.path.join(app.config['UPLOAD_FOLDER'], f"compressed_{filename}")
+        img.save(compressed_file_path, quality=quality)
+
+        # Return the compressed image to the user for download
+        return send_file(compressed_file_path, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)

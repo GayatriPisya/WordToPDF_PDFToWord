@@ -8,8 +8,8 @@
         <div class="col-md-6 mb-4">
             <div class="card shadow-lg border-0" style="background: linear-gradient(to right, #ff416c, #ff4b2b);">
                 <div class="card-body text-center">
-                    <h5 class="card-title" style="color: white;"><i class="fas fa-compress"></i> Compress PDF</h5>
-                    <form action="/compress" method="POST" enctype="multipart/form-data">
+                    <h5 class="card-title" style="color: white;"><i class="fas fa-compress"></i> Compress Image</h5>
+                    <form action="/compress-image" method="POST" enctype="multipart/form-data">
                         <!-- File Input -->
                         <input type="file" name="file" class="form-control mb-3" required>
                         
@@ -17,14 +17,15 @@
                         <div class="form-group">
                             <label for="compression_level" class="text-white">Select Compression Level</label>
                             <select name="compression_level" class="form-control mb-3" required>
-                                <option value="25">25% Reduction</option>
-                                <option value="50">50% Reduction</option>
-                                <option value="75">75% Reduction</option>
+                                <option value="25">25% Quality</option>
+                                <option value="50">50% Quality</option>
+                                <option value="75">75% Quality</option>
+                                <option value="100">No Compression (100% Quality)</option>
                             </select>
                         </div>
 
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-light w-100">Compress PDF</button>
+                        <button type="submit" class="btn btn-light w-100">Compress Image</button>
                     </form>
                 </div>
             </div>
