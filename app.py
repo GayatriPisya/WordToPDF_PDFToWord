@@ -175,5 +175,40 @@ def merge_pdfs():
 
     return send_file(output_path, as_attachment=True)
 
+# Route for Image to PDF Conversion
+@app.route('/convert-image', methods=['POST'])
+def convert_image_to_pdf():
+    if 'image' not in request.files:
+        return "No file part", 400
+
+    image_file = request.files['image']
+    
+    if image_file.filename == '':
+        return "No selected file", 400
+
+    if image_file:
+        # Save the uploaded image
+        filename = secure_filename(image_file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        image_file.save(file_path)
+
+        # Convert the image to PDF
+        try:
+            image = Image.open(file_path).convert('RGB')  # Ensure the image is in RGB format
+            pdf_path = os.path.splitext(file_path)[0] + ".pdf"
+            image.save(pdf_path, "PDF", quality=100)
+
+            # Remove the original image file to save space
+            os.remove(file_path)
+
+            # Send the PDF file back to the user
+            return send_file(pdf_path, as_attachment=True)
+
+        except Exception as e:
+            print(f"Error: {e}")
+            return "Error converting image to PDF", 500
+
+    return "Invalid request", 400
+
 if __name__ == '__main__':
     app.run(debug=True)
