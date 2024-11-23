@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, send_file
 from werkzeug.utils import secure_filename
+from PyPDF2 import PdfReader, PdfWriter
+from pdf2image import convert_from_path
 from PIL import Image
 import os
 import subprocess
@@ -209,6 +211,81 @@ def convert_image_to_pdf():
             return "Error converting image to PDF", 500
 
     return "Invalid request", 400
+
+# Configure static folder for preview images
+PREVIEW_FOLDER = 'static/previews'
+os.makedirs(PREVIEW_FOLDER, exist_ok=True)
+
+@app.route('/')
+def home():
+    return render_template('split_pdfs.html')
+
+@app.route('/preview-pdf', methods=['POST'])
+def preview_pdf():
+    if 'pdf_file' not in request.files:
+        return "No file uploaded", 400
+
+    pdf_file = request.files['pdf_file']
+
+    if pdf_file.filename == '':
+        return "No selected file", 400
+
+    try:
+        # Save the uploaded PDF
+        filename = secure_filename(pdf_file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        pdf_file.save(file_path)
+
+        # Convert PDF pages to images for preview
+        preview_images = {}
+        pages = convert_from_path(file_path, 150)  # 150 DPI
+        for i, page in enumerate(pages, start=1):
+            preview_path = os.path.join(PREVIEW_FOLDER, f"page_{i}.jpg")
+            page.save(preview_path, 'JPEG')
+            preview_images[i] = url_for('static', filename=f'previews/page_{i}.jpg')
+
+        # Render template with previews
+        return render_template('split_pdf.html', pages=preview_images)
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return "Error processing PDF", 500
+
+@app.route('/remove-pages', methods=['POST'])
+def remove_pages():
+    # Get selected pages to remove
+    selected_pages = request.form.getlist('remove_pages')
+    selected_pages = list(map(int, selected_pages))  # Convert to integers
+
+    # Get the uploaded PDF file path
+    uploaded_pdf = os.path.join(app.config['UPLOAD_FOLDER'], os.listdir(app.config['UPLOAD_FOLDER'])[0])
+
+    try:
+        # Read the uploaded PDF
+        pdf_reader = PdfReader(uploaded_pdf)
+        pdf_writer = PdfWriter()
+
+        # Write pages except selected ones
+        for i in range(len(pdf_reader.pages)):
+            if (i + 1) not in selected_pages:  # PDF pages are 0-indexed
+                pdf_writer.add_page(pdf_reader.pages[i])
+
+        # Save the modified PDF
+        output_path = os.path.join(app.config['UPLOAD_FOLDER'], "modified_pdf.pdf")
+        with open(output_path, "wb") as output_file:
+            pdf_writer.write(output_file)
+
+        # Clean up previews and original file
+        for file in os.listdir(PREVIEW_FOLDER):
+            os.remove(os.path.join(PREVIEW_FOLDER, file))
+        os.remove(uploaded_pdf)
+
+        # Provide the modified PDF for download
+        return send_file(output_path, as_attachment=True)
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return "Error processing PDF", 500
 
 if __name__ == '__main__':
     app.run(debug=True)
