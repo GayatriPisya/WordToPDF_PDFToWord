@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Image to PDF Section -->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <!-- Image to PDF Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-lg border-0" style="background: linear-gradient(to right, #4e79a7, #8c8ec6);">
+                <div class="card-body text-center">
+                    <h5 class="card-title" style="color: white;"><i class="fas fa-image"></i> Image to PDF</h5>
+                    <form action="/convert-image" method="POST" enctype="multipart/form-data">
+                        <!-- File Input -->
+                        <input type="file" name="image" class="form-control mb-3" accept="image/*" required>
+                        
+                        <!-- Instruction -->
+                        <p class="text-white">Select image to convert into a PDF.</p>
+                        
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-light w-100">Convert Image to PDF</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
