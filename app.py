@@ -36,6 +36,9 @@ def compress():
 def merge():
     return render_template('merge.html')
 
+@app.route('/arrange')
+def arrange():
+    return render_template('arrange.html')
 # Route for Image to PDF
 @app.route('/image-to-pdf')
 def image_to_pdf():
@@ -142,6 +145,19 @@ def compress_image():
 
         # Return the compressed image to the user for download
         return send_file(compressed_file_path, as_attachment=True)
+    
+@app.route('/arrange', methods=['POST'])
+def arrange_files():
+    files = request.files.getlist('files')
+    file_list = []
+    for file in files:
+        if file and file.filename.endswith('.pdf'):
+            temp_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+            file.save(temp_path)
+            file_list.append({'filename': file.filename, 'path': temp_path})
+
+    return render_template('arrange.html', files=file_list)
+
 @app.route('/merge', methods=['POST'])
 def merge_pdfs():
     from PyPDF2 import PdfMerger
