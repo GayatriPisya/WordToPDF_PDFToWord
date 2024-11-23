@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split PDF</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Remove Pages from PDF</h1>
+        <!-- Step 1: Upload PDF -->
+        <form id="uploadForm" action="/preview-pdf" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="pdf_file">Upload PDF</label>
+                <input type="file" name="pdf_file" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Upload and Preview</button>
+        </form>
+
+        <!-- Step 2: Preview and Select Pages -->
+        {% if pages %}
+        <form action="/remove-pages" method="POST">
+            <div class="mt-4">
+                <h4>Preview Pages</h4>
+                <div class="row">
+                    {% for page_number, page_image in pages.items() %}
+                    <div class="col-md-3 mb-3 text-center">
+                        <img src="{{ page_image }}" alt="Page {{ page_number }}" class="img-thumbnail">
+                        <div class="form-check mt-2">
+                            <input type="checkbox" name="remove_pages" value="{{ page_number }}" class="form-check-input">
+                            <label class="form-check-label">Remove Page {{ page_number }}</label>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-danger w-100 mt-3">Remove Selected Pages</button>
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>
