@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0" style="background: linear-gradient(to right, #ff416c, #ff4b2b);">
+                <div class="card-body text-center">
+                    <h5 class="card-title" style="color: white;">
+                        <i class="fas fa-file-pdf"></i> PDF to Word
+                    </h5>
+                    <form action="/convert" method="POST" enctype="multipart/form-data">
+                        <!-- File input -->
+                        <input type="file" name="file" class="form-control mb-3" required>
+                        <!-- Hidden field for conversion type -->
+                        <input type="hidden" name="conversion_type" value="pdf-to-word">
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-light w-100">
+                            Convert PDF to Word
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
