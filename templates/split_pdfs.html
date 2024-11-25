@@ -3,35 +3,24 @@
 {% block title %}Split PDF{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-    <h2 class="text-center">Remove Pages from PDF</h2>
-
-    <!-- Step 1: Upload PDF -->
-    <form id="uploadForm" action="/preview-pdf" method="POST" enctype="multipart/form-data" class="mt-4">
-        <div class="mb-3">
-            <label for="pdf_file" class="form-label">Upload PDF:</label>
-            <input type="file" name="pdf_file" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Upload and Preview</button>
-    </form>
-
-    <!-- Step 2: Preview and Select Pages -->
-    {% if pages %}
-    <form action="/remove-pages" method="POST" class="mt-5">
-        <h4 class="text-center">Preview Pages</h4>
+<div class="container">
+    <h2 class="text-center mt-4">Remove Pages from PDF</h2>
+    <form action="/remove-pages" method="POST">
+        <input type="hidden" name="pdf_path" value="{{ pdf_path }}">
         <div class="row">
             {% for page_number, page_image in pages.items() %}
-            <div class="col-md-3 text-center mb-4">
-                <img src="{{ page_image }}" alt="Page {{ page_number }}" class="img-thumbnail">
-                <div class="form-check mt-2">
-                    <input type="checkbox" name="remove_pages" value="{{ page_number }}" class="form-check-input">
-                    <label class="form-check-label">Remove Page {{ page_number }}</label>
+            <div class="col-md-3 text-center">
+                <img src="{{ page_image }}" alt="Page {{ page_number }}" class="img-thumbnail mb-2">
+                <div>
+                    <label>
+                        <input type="checkbox" name="remove_pages" value="{{ page_number }}">
+                        Remove Page {{ page_number }}
+                    </label>
                 </div>
             </div>
             {% endfor %}
         </div>
-        <button type="submit" class="btn btn-danger w-100 mt-3">Remove Selected Pages</button>
+        <button type="submit" class="btn btn-danger btn-block mt-4">Remove Selected Pages</button>
     </form>
-    {% endif %}
 </div>
 {% endblock %}
