@@ -216,9 +216,7 @@ def convert_image_to_pdf():
 PREVIEW_FOLDER = 'static/previews'
 os.makedirs(PREVIEW_FOLDER, exist_ok=True)
 
-@app.route('/')
-def home():
-    return render_template('split_pdfs.html')
+
 
 @app.route('/preview-pdf', methods=['POST'])
 def preview_pdf():
