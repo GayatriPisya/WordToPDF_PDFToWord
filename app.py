@@ -212,42 +212,5 @@ def convert_image_to_pdf():
 
     return "Invalid request", 400
 
-# Configure static folder for preview images
-PREVIEW_FOLDER = 'static/previews'
-os.makedirs(PREVIEW_FOLDER, exist_ok=True)
-
-
-
-@app.route('/preview-pdf', methods=['POST'])
-def preview_pdf():
-    if 'pdf_file' not in request.files:
-        return "No file uploaded", 400
-
-    pdf_file = request.files['pdf_file']
-
-    if pdf_file.filename == '':
-        return "No selected file", 400
-
-    try:
-        # Save the uploaded PDF
-        filename = secure_filename(pdf_file.filename)
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        pdf_file.save(file_path)
-
-        # Convert PDF pages to images for preview
-        preview_images = {}
-        pages = convert_from_path(file_path, 150)  # 150 DPI
-        for i, page in enumerate(pages, start=1):
-            preview_path = os.path.join(PREVIEW_FOLDER, f"page_{i}.jpg")
-            page.save(preview_path, 'JPEG')
-            preview_images[i] = url_for('static', filename=f'previews/page_{i}.jpg')
-
-        # Render template with previews
-        return render_template('split_pdf.html', pages=preview_images)
-
-    except Exception as e:
-        print(f"Error: {e}")
-        return "Error processing PDF", 500
-
 if __name__ == '__main__':
     app.run(debug=True)
