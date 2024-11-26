@@ -249,41 +249,5 @@ def preview_pdf():
         print(f"Error: {e}")
         return "Error processing PDF", 500
 
-@app.route('/remove-pages', methods=['POST'])
-def remove_pages():
-    # Get selected pages to remove
-    selected_pages = request.form.getlist('remove_pages')
-    selected_pages = list(map(int, selected_pages))  # Convert to integers
-
-    # Get the uploaded PDF file path
-    uploaded_pdf = os.path.join(app.config['UPLOAD_FOLDER'], os.listdir(app.config['UPLOAD_FOLDER'])[0])
-
-    try:
-        # Read the uploaded PDF
-        pdf_reader = PdfReader(uploaded_pdf)
-        pdf_writer = PdfWriter()
-
-        # Write pages except selected ones
-        for i in range(len(pdf_reader.pages)):
-            if (i + 1) not in selected_pages:  # PDF pages are 0-indexed
-                pdf_writer.add_page(pdf_reader.pages[i])
-
-        # Save the modified PDF
-        output_path = os.path.join(app.config['UPLOAD_FOLDER'], "modified_pdf.pdf")
-        with open(output_path, "wb") as output_file:
-            pdf_writer.write(output_file)
-
-        # Clean up previews and original file
-        for file in os.listdir(PREVIEW_FOLDER):
-            os.remove(os.path.join(PREVIEW_FOLDER, file))
-        os.remove(uploaded_pdf)
-
-        # Provide the modified PDF for download
-        return send_file(output_path, as_attachment=True)
-
-    except Exception as e:
-        print(f"Error: {e}")
-        return "Error processing PDF", 500
-
 if __name__ == '__main__':
     app.run(debug=True)
