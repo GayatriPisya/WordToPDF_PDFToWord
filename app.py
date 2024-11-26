@@ -46,10 +46,6 @@ def arrange():
 def image_to_pdf():
     return render_template('image_to_pdf.html')
 
-# Route for Split PDFs
-@app.route('/split-pdfs')
-def split_pdfs():
-    return render_template('split_pdfs.html')
 
 # Route to handle file upload and conversion
 @app.route('/convert', methods=['POST'])
