@@ -36,9 +36,4 @@ Ensure you have the following installed:
 ```bash
 git clone https://github.com/your-username/document-converter.git
 cd document-converter
-### 3. **Install Dependencies**
-```bash
-pip install -r requirements.txt
-### 4. **Run the Application**
-```bash
 python app.py
