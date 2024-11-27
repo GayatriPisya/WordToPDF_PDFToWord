@@ -8,11 +8,78 @@ html, body {
 
 main {
     flex: 1; /* Make main content stretch to fill space */
+    padding: 10px; /* Ensure padding on all devices */
+}
+
+/* General container styling */
+.container {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+}
+
+/* Content wrapper styling */
+.content-wrapper {
+    text-align: center;
+}
+
+/* Welcome heading */
+.content-wrapper h2 {
+    font-family: 'Roboto', sans-serif;
+    color: #09226e; /* Matching the navbar gradient */
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 2rem; /* Reduced size for mobile-friendly proportions */
+}
+
+/* Lead paragraph */
+.content-wrapper .lead {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.5; /* Better readability */
+}
+
+/* Regular paragraph */
+.content-wrapper p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Add hover effect to links */
+.content-wrapper a {
+    color: #c6133c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.content-wrapper a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .content-wrapper h2 {
+        font-size: 1.5rem;
+    }
+
+    .content-wrapper .lead {
+        font-size: 1rem;
+    }
+
+    .content-wrapper p {
+        font-size: 0.9rem;
+    }
 }
 
 /* Navbar */
 .navbar {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap; /* Ensure navbar items wrap on smaller screens */
 }
 
 .navbar-brand {
@@ -22,12 +89,12 @@ main {
 }
 
 .nav-link {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: white !important;
-    padding: 12px 20px;
+    padding: 10px 15px;
     display: flex;
     align-items: center; /* Align icons and text vertically */
-    gap: 10px; /* Space between icons and text */
+    gap: 5px; /* Space between icons and text */
 }
 
 .nav-link:hover {
@@ -40,7 +107,14 @@ footer {
     background: linear-gradient(to right, #c6133c, #09226e);
     color: white;
     text-align: center;
-    padding: 15px 0;
-    font-size: 1rem;
-    margin-top: auto; 
+    padding: 10px 5px; /* Reduced padding for smaller screens */
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+/* Reduce footer font size for small devices */
+@media (max-width: 768px) {
+    footer {
+        font-size: 0.8rem;
+    }
 }
