@@ -55,13 +55,14 @@
                 </div>
             </div>
         </nav>
-
-        <!-- Content Block -->
-        <main class="container my-5 flex-grow-1">
-            {% block content %}
-            <h2>Welcome to the Document Converter</h2>
-            <p>Select a tool from the navigation bar to get started.</p>
-            {% endblock %}
+        <main class="container">
+            <div class="content-wrapper">
+                {% block content %}
+                <h2>Welcome to the Document Converter</h2>
+                <p class="lead" style="color: #3b3b3b;">Easily convert your documents online with just a few clicks.</p>
+                <p>Choose a tool from the navigation bar to start converting your files with ease.</p>
+                {% endblock %}
+            </div>
         </main>
 
         <!-- Footer -->
