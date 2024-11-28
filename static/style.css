@@ -10,6 +10,16 @@ main {
     flex: 1; /* Make main content stretch to fill space */
     padding: 10px; /* Ensure padding on all devices */
 }
+/* Add a background image to the main element */
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.334), rgba(165, 218, 237, 0.312)), 
+    url('background.jpg'); /* Static folder is automatically referenced in Flask */
+    background-size: cover; /* Ensure it covers the entire area */
+    background-repeat: no-repeat; /* Prevent repeating */
+    background-position: center; /* Center the image */
+    
+}
+
 
 /* General container styling */
 .container {
@@ -26,24 +36,26 @@ main {
 /* Welcome heading */
 .content-wrapper h2 {
     font-family: 'Roboto', sans-serif;
-    color: #09226e; /* Matching the navbar gradient */
+    color: #061f6c; /* Matching the navbar gradient */
     font-weight: bold;
     margin-bottom: 10px;
-    font-size: 2rem; /* Reduced size for mobile-friendly proportions */
+    font-size: 2.5rem; /* Reduced size for mobile-friendly proportions */
 }
 
 /* Lead paragraph */
 .content-wrapper .lead {
-    font-size: 1.2rem;
-    color: #555;
+    font-size: 1.5rem;
+    color: #ffffff;
+    background-color: rgb(19, 142, 195);
+    border-radius: 15px;
     margin-bottom: 15px;
     line-height: 1.5; /* Better readability */
 }
 
 /* Regular paragraph */
 .content-wrapper p {
-    font-size: 1rem;
-    color: #666;
+    font-size: 1.5rem;
+    color: #010f5f;
 }
 
 /* Add hover effect to links */
@@ -104,7 +116,7 @@ main {
 
 /* Footer Styles */
 footer {
-    background: linear-gradient(to right, #c6133c, #09226e);
+    background: linear-gradient(to right, #000000, #1384c6);
     color: white;
     text-align: center;
     padding: 10px 5px; /* Reduced padding for smaller screens */

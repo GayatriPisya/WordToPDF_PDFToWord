@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Document Converter{% endblock %}</title>
     <link rel="icon" type="image/png" href="static/icon.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="d-flex flex-column min-vh-100">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(to right, #c6133c, #09226e);">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(to right, #1384c6 ,#000000);">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/"><i class="fa-solid fa-file-invoice"></i> Converter</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -59,7 +60,7 @@
             <div class="content-wrapper">
                 {% block content %}
                 <h2>Welcome to the Document Converter</h2>
-                <p class="lead" style="color: #3b3b3b;">Easily convert your documents <i class="fa-solid fa-file-invoice"></i> online with just a few clicks <i class="fa-solid fa-hand-point-up"></i></p>
+                <p class="lead">Easily convert your documents <i class="fa-solid fa-file-invoice"></i> online with just a few clicks <i class="fa-solid fa-hand-point-up"></i></p>
                 <p>Choose a tool from the navigation bar to start converting your files with ease.</p>
                 {% endblock %}
             </div>
