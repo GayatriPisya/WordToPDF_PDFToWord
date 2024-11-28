@@ -33,14 +33,27 @@ body {
     text-align: center;
 }
 
-/* Welcome heading */
 .content-wrapper h2 {
     font-family: 'Roboto', sans-serif;
     color: #061f6c; /* Matching the navbar gradient */
     font-weight: bold;
     margin-bottom: 10px;
-    font-size: 2.5rem; /* Reduced size for mobile-friendly proportions */
+    font-size: 2.5rem; /* Mobile-friendly proportions */
+    text-shadow: 0 0 10px rgb(97, 180, 210), /* Glow around the text */
+                 0 0 20px rgba(12, 207, 225, 0.973);
+    text-align: center; /* Center-align the heading */
+    position: relative; /* Ensures icons align correctly */
 }
+
+/* Style the icons inside the heading */
+.content-wrapper h2 i {
+    color: #09226e; /* Icon color */
+    margin: 0 10px; /* Spacing between icons and text */
+    font-size: 2rem; /* Icon size relative to heading */
+    text-shadow: 0 0 5px rgb(239, 240, 243); /* Glow for the icons */
+    vertical-align: middle; /* Align icons with text */
+}
+
 
 /* Lead paragraph */
 .content-wrapper .lead {
