@@ -2,26 +2,38 @@
 
 {% block content %}
 <!-- Arrange Files Section -->
-<div class="container my-5">
+<div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow-lg border-0" style="background: linear-gradient(to right, #11998e, #38ef7d);">
-                <div class="card-body text-center">
-                    <h5 class="card-title" style="color: white;"><i class="fas fa-sort"></i> Arrange PDF Files</h5>
-                    <form action="/merge" method="POST" id="arrange-form">
+        <div class="col-md-6">
+            <div class="card shadow-lg mx-auto" style="max-width: 500px; background: linear-gradient(to bottom right, #f7f7f7, #e6e6fa);">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-4 text-dark">
+                        <i class="fas fa-sort"></i> Arrange PDF Files
+                    </h5>
+                    <form action="/merge" method="POST" id="arrange-form" class="needs-validation" novalidate>
                         <ul id="file-list" class="list-group mb-3">
                             <!-- Dynamically populated list of files -->
                             {% for file in files %}
-                            <li class="list-group-item">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span>{{ file.filename }}</span>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-light move-up">
+                                        <i class="fas fa-arrow-up"></i> Move Up
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-light move-down">
+                                        <i class="fas fa-arrow-down"></i> Move Down
+                                    </button>
+                                </div>
                                 <input type="hidden" name="file_order[]" value="{{ file.filename }}">
-                                <button type="button" class="btn btn-sm btn-secondary float-right move-up">↑</button>
-                                <button type="button" class="btn btn-sm btn-secondary float-right move-down">↓</button>
                             </li>
                             {% endfor %}
                         </ul>
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-light w-100">Merge PDFs</button>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-layer-group"></i> Merge PDFs
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -49,4 +61,5 @@
         });
     });
 </script>
+
 {% endblock %}
