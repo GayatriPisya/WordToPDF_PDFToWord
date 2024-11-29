@@ -3,15 +3,38 @@
 {% block title %}Word to PDF Converter{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2>Word to PDF Converter</h2>
-    <form action="/convert" method="POST" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label for="file" class="form-label">Upload Word File:</label>
-            <input type="file" name="file" class="form-control" required>
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h2 class="display-5">
+            <i class="fas fa-file-word"></i> Word to PDF Converter
+        </h2>
+        <p class="lead text-white">Easily convert your Word documents to PDF format in just a few clicks!</p>
+
+    </div>
+
+    <!-- Conversion Card -->
+    <div class="card shadow-lg mx-auto" style="max-width: 500px;">
+        <div class="card-body">
+            <h5 class="card-title text-center text-dark">Upload Your Word File</h5>
+            <form action="/convert" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="file" class="form-label text-secondary">
+                        <i class="fas fa-upload"></i> Select File
+                    </label>
+                    <input type="file" name="file" id="file" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Please select a file to upload.
+                    </div>
+                </div>
+                <input type="hidden" name="conversion_type" value="word-to-pdf">
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-file-export"></i> Convert to PDF
+                    </button>
+                </div>
+            </form>
         </div>
-        <input type="hidden" name="conversion_type" value="word-to-pdf">
-        <button type="submit" class="btn btn-primary">Convert</button>
-    </form>
+    </div>
 </div>
 {% endblock %}
