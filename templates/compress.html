@@ -1,34 +1,43 @@
 {% extends 'base.html' %}
 
+{% block title %}Image Compression{% endblock %}
+
 {% block content %}
 <!-- File Compression Section -->
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <!-- File Compression Card -->
-        <div class="col-md-6 mb-4">
-            <div class="card shadow-lg border-0" style="background: linear-gradient(to right, #ff416c, #ff4b2b);">
-                <div class="card-body text-center">
-                    <h5 class="card-title" style="color: white;"><i class="fas fa-compress"></i> Compress Image</h5>
-                    <form action="/compress-image" method="POST" enctype="multipart/form-data">
-                        <!-- File Input -->
-                        <input type="file" name="file" class="form-control mb-3" required>
-                        
-                        <!-- Compression Level Selection -->
-                        <div class="form-group">
-                            <label for="compression_level" class="text-white">Select Compression Level</label>
-                            <select name="compression_level" class="form-control mb-3" required>
-                                <option value="25">25% Quality</option>
-                                <option value="50">50% Quality</option>
-                                <option value="75">75% Quality</option>
-                                <option value="100">No Compression (100% Quality)</option>
-                            </select>
-                        </div>
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h2 class="display-5"><i class="fas fa-compress"></i> Compress Image</h2>
+        <p class="lead text-white">Efficiently reduce the size of your image files while maintaining quality!</p>
+    </div>
 
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn btn-light w-100">Compress Image</button>
-                    </form>
+    <!-- Compression Card -->
+    <div class="card shadow-lg border-0 mx-auto" style="max-width: 500px; background: linear-gradient(to bottom right, #f7f7f7, #e6e6fa);">
+        <div class="card-body">
+            <h5 class="card-title text-center mb-4 text-dark">Upload Your Image</h5>
+            <form action="/compress-image" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="file" class="form-label text-muted"><i class="fas fa-upload"></i> Select Image</label>
+                    <input type="file" name="file" class="form-control" required>
                 </div>
-            </div>
+
+                <!-- Compression Level Selection -->
+                <div class="form-group mb-3">
+                    <label for="compression_level" class="text-muted"><i class="fas fa-sliders-h"></i> Select Compression Level</label>
+                    <select name="compression_level" class="form-control" required>
+                        <option value="25">25% Quality</option>
+                        <option value="50">50% Quality</option>
+                        <option value="75">75% Quality</option>
+                        <option value="100">No Compression (100% Quality)</option>
+                    </select>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-compress"></i> Compress Image
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
