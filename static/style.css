@@ -48,10 +48,8 @@ body {
 /* Style the icons inside the heading */
 .content-wrapper h2 i {
     color: #09226e; /* Icon color */
-    margin: 0 10px; /* Spacing between icons and text */
     font-size: 2rem; /* Icon size relative to heading */
     text-shadow: 0 0 5px rgb(239, 240, 243); /* Glow for the icons */
-    vertical-align: middle; /* Align icons with text */
 }
 
 

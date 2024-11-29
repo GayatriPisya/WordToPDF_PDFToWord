@@ -1,26 +1,31 @@
 {% extends 'base.html' %}
 
+{% block title %}PDF to Word Converter{% endblock %}
+
 {% block content %}
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-lg border-0" style="background: linear-gradient(to right, #ff416c, #ff4b2b);">
-                <div class="card-body text-center">
-                    <h5 class="card-title" style="color: white;">
-                        <i class="fas fa-file-pdf"></i> PDF to Word
-                    </h5>
-                    <form action="/convert" method="POST" enctype="multipart/form-data">
-                        <!-- File input -->
-                        <input type="file" name="file" class="form-control mb-3" required>
-                        <!-- Hidden field for conversion type -->
-                        <input type="hidden" name="conversion_type" value="pdf-to-word">
-                        <!-- Submit button -->
-                        <button type="submit" class="btn btn-light w-100">
-                            Convert PDF to Word
-                        </button>
-                    </form>
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h2 class="display-5"><i class="fas fa-file-pdf"></i> PDF to Word Converter</h2>
+        <p class="lead text-white">Effortlessly convert your PDF files into editable Word documents!</p>
+    </div>
+
+    <!-- Conversion Card -->
+    <div class="card shadow-lg border-0 mx-auto" style="max-width: 500px; background: linear-gradient(to bottom right, #f7f7f7, #e6e6fa);">
+        <div class="card-body">
+            <h5 class="card-title text-center mb-4 text-dark">Upload Your PDF File</h5>
+            <form action="/convert" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="file" class="form-label text-muted"><i class="fas fa-upload"></i> Select File</label>
+                    <input type="file" name="file" class="form-control" required>
                 </div>
-            </div>
+                <input type="hidden" name="conversion_type" value="pdf-to-word">
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-file-export"></i> Convert to Word
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
