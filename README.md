@@ -7,14 +7,26 @@
 
 ## **Features**
 - **Word to PDF**: Convert Microsoft Word documents into professional-grade PDFs.
+  
  ![image](https://github.com/user-attachments/assets/22093d4b-511c-4313-9262-277a86e14353)
 
+---
 - **PDF to Word**: Extract editable Word files from PDF documents.
+  
   ![image](https://github.com/user-attachments/assets/83e1c899-bc51-41dd-be97-bf7e1e608961)
 
+---
 - **File Compression**: Reduce file sizes while maintaining quality.
+  
+![image](https://github.com/user-attachments/assets/a01ad8b4-7818-4f05-9687-5d0dc5f16cec)
+
+---
 - **Merge PDFs**: Combine multiple PDFs into a single document.
+
+---
 - **Image to PDF**: Convert images (JPG, PNG, etc.) into PDF format.
+
+---
 - **Responsive Design**: Mobile-friendly and user-centric interface.
 
 ---
