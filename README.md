@@ -22,14 +22,18 @@
 
 ---
 - **Merge PDFs**: Combine multiple PDFs into a single document.
+  
   ![image](https://github.com/user-attachments/assets/c73d443c-0d4d-4b97-9a43-4cce6309fcc0)
 
 ---
 - **Image to PDF**: Convert images (JPG, PNG, etc.) into PDF format.
+  
 ![image](https://github.com/user-attachments/assets/f74b919e-dc42-4d9e-909d-0a18daef04db)
 
 ---
 - **Responsive Design**: Mobile-friendly and user-centric interface.
+  
+![image](https://github.com/user-attachments/assets/fe1a2c0c-498c-48d1-a997-563a1d3ac723)
 
 ---
 
